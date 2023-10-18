@@ -4,7 +4,7 @@ const { MongoClient } = require("mongodb");
 class JobHunt {
 
     constructor() {
-        this.uri = "mongodb+srv://oohkumar:Daktari123!@cluster0.iz7sd9n.mongodb.net/?retryWrites=true&w=majority";
+        this.uri = process.env.MONGO_URI;
         this.dbName = "jobHunt";
         this.collectionName = "jobs";
         this.collection = '';
