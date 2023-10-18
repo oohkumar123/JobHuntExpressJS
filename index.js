@@ -2,6 +2,8 @@ const express = require('express');
 const JobHunt = require('./models/jobHunt.js');
 
 const app = express();
+const PORT = process.env.PORT || 3000
+
 app.set('view engine', 'ejs'); // middleware & static files
 app.use(express.static('public')); // sets default public folder for styles
 
@@ -17,7 +19,10 @@ async function init () {
 }
 
 JobHunt.connectDb().then(result => {
-    app.listen(3000);
-    console.log('Watching on port 3000');
+    app.listen(PORT);
+    console.log(`Watching on port ${PORT}`);
     init();
-}).catch(err => console.log(err));;
+}).catch(err => {
+    console.log(err);
+    process.exit(1);
+});

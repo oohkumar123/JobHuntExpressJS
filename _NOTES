@@ -9,3 +9,7 @@ Flash Cards
 What are the names of the two types of exports?
 
 company 
+
+
+COMMANDS TO ADD TO BOOKMARKS
+list all global packages: npm list -g --depth 0
