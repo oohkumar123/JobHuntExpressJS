@@ -1,0 +1,10 @@
+@import "../helpers/colors";
+
+footer {
+    display: flex;
+    border-radius: 20px;
+    padding:20px;
+    background-color: $second-color;
+    align-items: center;
+    color: white;
+}

@@ -1,0 +1,43 @@
+@import "../helpers/colors";
+
+nav {
+    display: flex;
+    border-radius: 20px;
+    padding:20px;
+    background-color: $second-color;
+    justify-content: space-between;
+    align-items: center;
+    
+    .site-title {
+        h1 {
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 40px;
+        }
+        p {
+            font-size: 20px;
+            color: $second-color;
+            filter: brightness(150%);
+        }
+    }
+    
+    ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        border-radius: 20px;
+        padding:10px;
+        column-gap: 20px;
+
+        a {
+            text-decoration: none;
+            color: $second-color;
+            filter: brightness(60%);
+
+        }
+
+
+    }
+}

@@ -1,0 +1,19 @@
+@import "helpers/reset";
+@import "helpers/colors";
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap");
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    font-family: "arial";
+    background-color: $first-color;
+    border-radius: 20px;
+    padding:20px;
+
+    @import "sections/nav";
+    
+    @import "sections/jobs";
+
+    @import "sections/footer";
+
+}
