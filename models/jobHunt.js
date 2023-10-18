@@ -1,7 +1,4 @@
 require('dotenv').config();
-console.log('here',process.env.MONGO_URI);
-
-
 const { MongoClient } = require("mongodb");
 
 class JobHunt {
