@@ -1,7 +1,7 @@
 const express = require('express');
 const JobHunt = require('./models/jobHunt.js');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 app.use(express.urlencoded({ extended: true })) // to support URL-encoded bodies
 
 
