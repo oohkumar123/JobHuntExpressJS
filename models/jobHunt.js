@@ -26,12 +26,7 @@ class JobHunt {
                 date: "1697560943526",
                 companyName: "TipTopCompany",
                 jobTitle: "Front End Engineer",
-                linkToJd: "https://www./jobhere.com/at45qgagad",
-                requirements: ["php","js","css","html","mysql"],
-                status: [
-                    "applied",
-                    "archived"
-                ],
+                jobLink: "https://www./jobhere.com/at45qgagad",
             },
         ];
 
@@ -40,8 +35,8 @@ class JobHunt {
     async list() {
         try {
             let jobsList = [];
-            const cursor = await this.collection.find({}).sort({ name: 1 });
-            await cursor.forEach((jobApplied) => {
+            const returnValues = await this.collection.find({}).sort({ name: 1 });
+            await returnValues.forEach((jobApplied) => {
                 jobsList.push(jobApplied)
             });
             return jobsList;
@@ -49,6 +44,14 @@ class JobHunt {
             console.error(
                 `Something went wrong trying to find the documents: ${err}\n`
             );
+        }
+    }
+    async add(data) {
+        console.log(data);
+        try {
+            const returnValues = await this.collection.insertOne({_id:null, ...data});
+        } catch (err) {
+            console.error(`Something went wrong trying to find the documents: ${err}\n`);
         }
     }
 }

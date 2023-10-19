@@ -1,0 +1,47 @@
+<%- include("./partials/head.ejs") %>
+    <div class="add">
+
+        <form action="/doadd" method="post">
+            <h2>Add Jobs</h2>
+            <ul>
+                <li class="date">
+                    <label>Date: </label><input type="text" name="date" value="2/3/2023"/>
+                </li>
+                <li class="company-name">
+                    <label>Company: </label><input type="text" name="companyName" value="Top Widgets Inc"/>
+                </li>
+                <li class="job-title">
+                    <label>Job Title: </label><input type="text" name="jobTitle" value="Web Developer" />
+                </li>
+                <li class="job-link">
+                    <label>Job  Link: </label><input type="text" name="jobLink" value="https://topwidg.com" />
+                </li>
+                <li class="job-requirements">
+                    <label>Job Reqs: </label>
+                    <ul class="checks">
+                        <li><% let reqs = ['php', 'mysql', 'vuejs', 'nodejs', 'laravel']; %>
+                            <% reqs.forEach ((req, i)=>{ %>
+                                <input type="checkbox" id="check" name="reqs" value="<%= req %>"> <%= req %>
+                                <% if (i < reqs.length-1) { %> | <% } %>
+                            <% }) %>
+                        </li>
+                    </ul>
+                </li>
+                <li class="job-activity">
+                    <label>Job Activity: </label>
+                    <ul class="radios">
+                        <li><% let acts = ['applied', 'rejected', 'interview', 'archived']; %>
+                            <% acts.forEach ((act, i)=>{ %>
+                                <input type="radio" id="radio" name="act" value="<%= act %>"> <%= act %>
+                                <% if (i < acts.length-1) { %> | <% } %>
+                            <% }) %>
+                        </li>
+                    </ul>
+                </li>
+                <li class="job-submit">
+                    <label></label><input type="submit" name="submit" value="submit">
+                </li>
+            </ul>
+        </form>
+    </div>
+<%- include("./partials/footer.ejs") %>

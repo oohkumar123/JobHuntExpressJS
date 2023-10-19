@@ -1,0 +1,87 @@
+@import "../helpers/colors";
+
+.add {
+    border-radius: 20px;
+    padding: 20px;
+    background-color: $second-color;
+
+    form {
+
+        h2 {
+            font-size: 30px;
+            color: $second-color;
+            filter: brightness(150%);
+            padding-bottom: 5px;;
+        }
+        > ul {
+            background-color: white;
+            border-radius: 20px;
+            padding:20px;
+            display: flex;
+            flex-direction: column;
+
+            > li {
+                display: flex;
+                padding-bottom: 5px;
+                gap: 5px;
+                align-items: center;
+                
+                > label {
+                    font-size: 18px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    color: #142d4c;
+                    width: 120px;
+                }
+                
+                > input {
+                    flex: .5;
+                    border-radius: 5px;
+                    border: 1px solid #cccccc;
+                    padding: 5px 5px;
+                }
+
+                ul.checks {
+                    li {
+                        input[type="checkbox"] {
+                            width: 1.3em;
+                            height: 1.3em;
+                            background-color: white;
+                            border-radius: 50%;
+                            vertical-align: middle;
+                            border: 1px solid #ddd;
+                            appearance: none;
+                            -webkit-appearance: none;
+                            outline: none;
+                            cursor: pointer;   
+                            &:checked {
+                                background-color: gray;
+                            }                     }
+                    }
+                }
+
+                ul.radios {
+                    background-color: #fff;
+                    li {
+                        input[type="radio"] {
+                            width: 1.3em;
+                            height: 1.3em;
+                            background-color: white;
+                            border-radius: 50%;
+                            vertical-align: middle;
+                            border: 1px solid #ddd;
+                            appearance: none;
+                            -webkit-appearance: none;
+                            outline: none;
+                            cursor: pointer;   
+                            &:checked {
+                                background-color: gray;
+                            }                     
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

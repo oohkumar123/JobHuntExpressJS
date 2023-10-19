@@ -7,6 +7,7 @@ nav {
     background-color: $second-color;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
     
     .site-title {
         h1 {
@@ -14,6 +15,10 @@ nav {
             text-decoration: none;
             color: white;
             font-size: 40px;
+            a {
+                text-decoration: none;
+                color: white;
+            }
         }
         p {
             font-size: 20px;

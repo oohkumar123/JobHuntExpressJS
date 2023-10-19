@@ -11,7 +11,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video, input {
   margin: 0;
   padding: 0;
   border: 0;
@@ -64,12 +64,17 @@ table {
   background-color: #9fd3c7;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
 .container nav .site-title h1 {
   margin-bottom: 10px;
   text-decoration: none;
   color: white;
   font-size: 40px;
+}
+.container nav .site-title h1 a {
+  text-decoration: none;
+  color: white;
 }
 .container nav .site-title p {
   font-size: 20px;
@@ -109,6 +114,7 @@ table {
   border-radius: 20px;
   padding: 20px;
   color: #142d4c;
+  margin-bottom: 20px;
 }
 .container .jobs > ul li {
   margin-bottom: 5px;
@@ -171,6 +177,79 @@ table {
   display: block;
   line-height: normal;
 }
+.container .add {
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #9fd3c7;
+}
+.container .add form h2 {
+  font-size: 30px;
+  color: #9fd3c7;
+  filter: brightness(150%);
+  padding-bottom: 5px;
+}
+.container .add form > ul {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.container .add form > ul > li {
+  display: flex;
+  padding-bottom: 5px;
+  gap: 5px;
+  align-items: center;
+}
+.container .add form > ul > li > label {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #142d4c;
+  width: 120px;
+}
+.container .add form > ul > li > input {
+  flex: 0.5;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  padding: 5px 5px;
+}
+.container .add form > ul > li ul.checks li input[type=checkbox] {
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+.container .add form > ul > li ul.checks li input[type=checkbox]:checked {
+  background-color: gray;
+}
+.container .add form > ul > li ul.radios {
+  background-color: #fff;
+}
+.container .add form > ul > li ul.radios li input[type=radio] {
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+.container .add form > ul > li ul.radios li input[type=radio]:checked {
+  background-color: gray;
+}
 .container footer {
   display: flex;
   border-radius: 20px;
@@ -178,4 +257,5 @@ table {
   background-color: #9fd3c7;
   align-items: center;
   color: white;
+  margin-top: 20px;
 }/*# sourceMappingURL=style.css.map */

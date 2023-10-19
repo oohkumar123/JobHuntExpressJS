@@ -4,23 +4,27 @@
     <% if (jobList.length > 0) { %> 
         <% jobList.forEach(job => { %>
             <ul>
-                <li class="date"><h3>12/20/2023<%= //job.date %></h3></li>
+                <li class="date"><h3><%= job.date %></h3></li>
                 <li class="company-name"><%= job.jobTitle %> <span>- <%= job.companyName %></span></li>
-                <li class="job-description"><a href="<%= job.linkToJd %>">Job Description</a></li>
-                <li class="job-requirements">
-                    <ul>
-                        <% job.requirements.forEach(requirement => { %>
-                            <li><%= requirement %></li>
-                        <% }) %>
-                    </ul>
-                </li>
-                <li class="job-status">
-                    <ul>
-                        <% job.status.forEach(stat => { %>
-                            <li><%= stat %></li>
-                        <% }) %>
-                    </ul>
-                </li>
+                <li class="job-description"><a href="<%= job.jobLink %>">Job Description</a></li>
+                <% if(typeof job.requirements !== 'undefined'){ %>
+                    <li class="job-requirements">
+                        <ul>
+                            <% job.requirements.forEach(requirement => { %>
+                                <li><%= requirement %></li>
+                            <% }) %>
+                        </ul>
+                    </li>
+                <% } %>
+                <% if(typeof job.status !== 'undefined'){ %>
+                    <li class="job-status">
+                        <ul>
+                            <% job.status.forEach(stat => { %>
+                                <li><%= stat %></li>
+                            <% }) %>
+                        </ul>
+                    </li>
+                <% } %>
             </ul>
         <% }) %> 
     <% } else { %>
