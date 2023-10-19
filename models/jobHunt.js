@@ -47,7 +47,6 @@ class JobHunt {
         }
     }
     async add(data) {
-        console.log(data);
         try {
             const returnValues = await this.collection.insertOne({_id:null, ...data});
         } catch (err) {
@@ -55,12 +54,4 @@ class JobHunt {
         }
     }
 }
-
-
-// add
-
-// edit 
-
-// delete
-
 module.exports = new JobHunt;
