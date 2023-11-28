@@ -1,31 +1,38 @@
 <%- include("./partials/head.ejs") %>
 <div class="jobs">
-    <h2>All Jobs</h2>
-    <% if (jobList.length > 0) { %> 
-        <% jobList.forEach(job => { %>
-            <ul>
-                <li class="date"><h3><%= job.date %></h3></li>
-                <li class="company-name"><%= job.jobTitle %> <span>- <%= job.companyName %></span></li>
-                <li class="job-description"><a href="<%= job.jobLink %>">Job Description</a></li>
-                <% if(typeof job.requirements !== 'undefined'){ %>
-                    <li class="job-requirements">
-                        <ul>
-                            <% job.requirements.forEach(requirement => { %>
-                                <li><%= requirement %></li>
-                            <% }) %>
-                        </ul>
-                    </li>
-                <% } %>
-                <% if(typeof job.status !== 'undefined'){ %>
-                    <li class="job-status">
-                        <ul>
-                            <% job.status.forEach(stat => { %>
-                                <li><%= stat %></li>
-                            <% }) %>
-                        </ul>
-                    </li>
-                <% } %>
-            </ul>
+    <h2>Todays Jobs (<%= jobList?.length %>)</h2>
+    <% if (jobList?.length > 0) { %> 
+        <% jobList.forEach(job => { 
+            const [year, month, day] = JSON.stringify(job.date).replace(/^"(.*)"$/, '$1').slice(0, 10).split('-');
+            let date = `${month}/${day}/${year}`; %>
+            <div class="job-row">
+                <ul>
+                    <li class="date"><h3><%= date %></h3></li>
+                    <li class="company-name"><%= job.jobTitle %> <span>- <%= job.companyName %></span></li>
+                    <li class="job-description"><a href="<%= job.jobLink %>" target="_blank">Link to JD</a></li>
+                    <li class="job-notes"><%= job.notes %></li>
+                    <% if(typeof job.reqs !== 'undefined'){ %>
+                        <li class="job-requirements">
+                            <ul>
+                                <% job.reqs.forEach(req => { %>
+                                    <li><%= req %></li>
+                                <% }) %>
+                            </ul>
+                        </li>
+                    <% } %>
+                    <% if(typeof job.acts !== 'undefined'){ %>
+                        <li class="job-status">
+                            <ul>
+                                <li><%= job.acts %></li>
+                            </ul>
+                        </li>
+                    <% } %>
+                </ul>
+                <div class="edit">
+                    <a href="/edit?id=<%= job._id %>">edit</a> | 
+                    <a href="/delete?id=<%= job._id %>" onclick="return confirm('Are you sure?')">delete</a>
+                </div>
+            </div>
         <% }) %> 
     <% } else { %>
         <p>There are no blogs to display......</p>

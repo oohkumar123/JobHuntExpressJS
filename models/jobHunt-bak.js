@@ -39,26 +39,23 @@ class JobHunt {
         console.log('%csort: %o', 'color: red;font-size:12px', sort);
         console.log('%creq: %o', 'color: red;font-size:12px', req);
 
-        let findData;
         let date = {};
-        if (period ==='today' && sort=='date') {
-            date = new Date();
-            date.setHours(-8,0,0,0);
-            findData = {"date": {"$gte" : date}};
-        } else if (period ==='all' && sort=='date') {
-            findData = {};
-        } else if (period ==='month' && sort=='date') {
-            let month = req.params.month
-            findData = {
-                "date": {
-                    "$gte" : new Date(`2023-${month}-01`), 
-                    "$lt" : new Date(`2023-${month}-31`)
-                }
-            }
+        if (period ==='today') {
+            const today = new Date();
+            let day = today.getDate();
+            let month = today.getMonth() + 1;
+            let year = today.getFullYear();
+            date = {date:`${month}/${day}/${year}`};
+        } else if (period ==='all') {
+            date = {};
+        } else if (period ==='month') {
+            console.log('%cperiod: %o', 'color: green;font-size:12px', 'period');
+            date = {$gte:ISODate('2023-11-01'),$lt:ISODate('2023-11-31')};
         }
+        
         try {
             let jobsList = [];
-            const returnValues = await this.collection.find(findData).sort(sort)
+            const returnValues = await this.collection.find(date).sort(sort);
             await returnValues.forEach((jobApplied) => {
                 jobsList.push(jobApplied)
             });
@@ -106,16 +103,6 @@ class JobHunt {
                 `Something went wrong trying to delete documents: ${err}\n`
             );
         }    
-    }
-    getTodayDate() {
-        const today = new Date();
-        console.log('%ctoday: %o', 'color: red;font-size:12px', today);
-        let day = today.getDate();
-        let month = today.getMonth() + 1;
-        let year = today.getFullYear();
-        //return {date:`${month}/${day}/${year}`};
-        return today;
-
     }
     
 }

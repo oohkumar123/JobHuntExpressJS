@@ -13,72 +13,143 @@
             filter: brightness(150%);
             padding-bottom: 5px;;
         }
-        > ul {
-            background-color: white;
-            border-radius: 20px;
-            padding:20px;
+        .submit {
             display: flex;
-            flex-direction: column;
-
-            > li {
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 0;
+            padding-top:20px;
+            input[type="submit"] {
+                border-radius: 5px;
+                border:0 solid #cccccc;
+                padding: 10px 10px;
+                background-color: $third-color;
+                color: white;
+                font-size: 20px;;
+            }
+        }
+        .content {
+            display: flex;
+            column-gap: 20px;
+            > ul {
+                background-color: white;
+                border-radius: 20px;
+                padding:20px;
                 display: flex;
-                padding-bottom: 5px;
-                gap: 5px;
-                align-items: center;
-                
-                > label {
-                    font-size: 18px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-end;
-                    color: #142d4c;
-                    width: 120px;
-                }
-                
-                > input {
-                    flex: .5;
-                    border-radius: 5px;
-                    border: 1px solid #cccccc;
-                    padding: 5px 5px;
-                }
+                flex-direction: column;
+                width: 600px;
 
-                ul.checks {
-                    li {
-                        input[type="checkbox"] {
-                            width: 1.3em;
-                            height: 1.3em;
-                            background-color: white;
-                            border-radius: 50%;
-                            vertical-align: middle;
-                            border: 1px solid #ddd;
-                            appearance: none;
-                            -webkit-appearance: none;
-                            outline: none;
-                            cursor: pointer;   
-                            &:checked {
-                                background-color: gray;
-                            }                     }
+                > li {
+                    display: flex;
+                    padding-bottom: 5px;
+                    gap: 5px;
+                    align-items: center;
+                    &.job-requirements {
+                        align-items: flex-start;
+                        padding-bottom: 10px;
+
+                    }
+                    
+                    > label {
+                        font-size: 18px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        color: #142d4c;
+                        width: 120px;
+                    }
+                    
+                    > input {
+                        flex: 1;
+                        border-radius: 5px;
+                        border: 1px solid #cccccc;
+                        padding: 5px 5px;
+                    }
+
+                    ul.checks {
+                        display: grid;
+                        grid-template-columns:repeat(4, 1fr);
+                        row-gap: 10px;
+                        column-gap: 10px;
+                    
+                        li {
+                            white-space: nowrap;
+                            input[type="checkbox"] {
+                                width: 1.3em;
+                                height: 1.3em;
+                                background-color: white;
+                                border-radius: 50%;
+                                vertical-align: middle;
+                                border: 1px solid #ddd;
+                                appearance: none;
+                                -webkit-appearance: none;
+                                outline: none;
+                                cursor: pointer;   
+                                &:checked {
+                                    background-color: gray;
+                                }                     
+                            }
+                        }
+                    }
+
+                    ul.radios {
+                        display: grid;
+                        grid-template-columns:repeat(4, 1fr);
+                        row-gap: 10px;
+                        column-gap: 10px;
+                        li {
+                            white-space: nowrap;
+                            input[type="radio"] {
+                                width: 1.3em;
+                                height: 1.3em;
+                                background-color: white;
+                                border-radius: 50%;
+                                vertical-align: middle;
+                                border: 1px solid #ddd;
+                                appearance: none;
+                                -webkit-appearance: none;
+                                outline: none;
+                                cursor: pointer;   
+                                &:checked {
+                                    background-color: gray;
+                                }                     
+                            }
+                        }
+                    }
+                }
+            }
+            .notes {
+                background-color: white;
+                border-radius: 20px;
+                padding:20px;
+                flex:1;
+                
+                .notes-area {
+                    padding-bottom:10px;
+                    textarea {
+                        width: 100%;
+                        background-color: white;
+                        border-radius: 20px;
+                        border: 1px solid #ddd;
+                        padding: 20px;
+                        &::placeholder {
+                            color:$second-color;
+                        }
                     }
                 }
 
-                ul.radios {
-                    background-color: #fff;
-                    li {
-                        input[type="radio"] {
-                            width: 1.3em;
-                            height: 1.3em;
-                            background-color: white;
-                            border-radius: 50%;
-                            vertical-align: middle;
-                            border: 1px solid #ddd;
-                            appearance: none;
-                            -webkit-appearance: none;
-                            outline: none;
-                            cursor: pointer;   
-                            &:checked {
-                                background-color: gray;
-                            }                     
-                        }
+                .recruiter-area {
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    grid-gap: 5px;
+                    align-items: center;
+                    label {
+                        text-align: right;
+                    }
+                    input {
+                        border-radius: 5px;
+                        border: 1px solid #cccccc;
+                        padding: 5px 5px;                    
                     }
                 }
             }

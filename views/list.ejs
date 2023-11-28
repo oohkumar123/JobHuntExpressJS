@@ -1,0 +1,35 @@
+<%- include("./partials/head.ejs") %>
+<div class="jobs-list">
+    <div class="job-list-title">
+        <h2>All Jobs (<%= jobList?.length %>)</h2>
+        <select class="form-select" id="months">
+            <option selected>Open this select menu</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+        </select>
+    </div>
+    
+    <% if (jobList?.length > 0) { %> 
+        <div class="jobs-content">
+            <table class="job-table">
+                <tr>
+                    <th><a href="/list/sort/date">Date</a></th>
+                    <th><a href="/list/sort/companyName">Company</a></th>
+                    <th><a href="/list/sort/jobTitle">Job Title</a></th>
+                </tr>
+                <% jobList?.forEach(job => { 
+                    const [year, month, day] = JSON.stringify(job.date).replace(/^"(.*)"$/, '$1').slice(0, 10).split('-');
+                    let date = `${month}/${day}/${year}`; %>
+                    <tr>
+                        <td class="date"><%= date %></td>
+                        <td class="company-name"><a href="/edit?id=<%= job._id %>"><%= job.companyName %></a></td>
+                        <td class="job-title"><a href="<%= job.jobLink %>" target="_blank"><%= job.jobTitle %></a></td>
+                    </tr>
+                <% }) %> 
+            </table>
+        </div>
+    <% } else { %>
+        <p>There are no blogs to display......</p>
+    <% } %>
+</div>
+<%- include("./partials/footer.ejs") %>

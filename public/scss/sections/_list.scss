@@ -1,0 +1,75 @@
+@import "../helpers/colors";
+
+.jobs-list {
+    margin:20px 0;
+    border-radius: 20px;
+    padding:20px;
+    background-color: $second-color;
+    color: white;
+
+    .job-list-title {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        h2 {
+            font-size: 30px;
+            color: $second-color;
+            filter: brightness(150%);
+            padding-bottom: 5px;
+        }
+        
+        select {
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+            padding: 5px 5px;
+            color: #142d4c;
+        }
+
+    }
+    
+    .jobs-content {
+        background-color: white;
+        border-radius: 20px;
+        padding:20px;
+
+        .job-table {
+
+            tr {
+                th {
+                    text-align: left;
+                    font-weight: 700;
+                    color: #142d4c;
+                    padding-bottom:10px;
+                    a {
+                        color: #142d4c;
+                        text-decoration: none;
+                    }
+                }
+                
+                td {
+                    margin-bottom: 5px;
+                    font-size: 16px;
+                    font-weight: 400;
+                    padding-right:20px;
+                    padding-bottom: 5px;
+                    color: #142d4c;
+                    a {
+                        color: #142d4c;
+                        text-decoration: none;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                    
+                    &.date {}
+                    
+                    &.company-name {}
+                    
+                    &.job-title {}
+                    
+                }
+            }
+        }
+
+    }
+}

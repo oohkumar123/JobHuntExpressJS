@@ -1,0 +1,60 @@
+<%- include("./partials/head.ejs") %>
+<div class="add">
+    <form action="/doedit" method="post">
+        <input type="hidden" name="_id" value="<%= job._id %>">
+        <h2><%= title %></h2>
+        <div class="content" style="display: flex;">
+            <ul>
+                <li class="date">
+                    <label>Date: </label><input type="text" name="date" value="<%= job.date %>"/>
+                </li>
+                <li class="job-title">
+                    <label>Job Title: </label><input type="text" name="jobTitle" value="<%= job.jobTitle %>" />
+                </li>
+                <li class="company-name">
+                    <label>Company: </label><input type="text" name="companyName" value="<%= job.companyName %>"/>
+                </li>
+                <li class="job-link">
+                    <label>Job  Link: </label><input type="text" name="jobLink" value="<%= job.jobLink %>" />
+                </li>
+                <li class="job-requirements">
+                    <label>Job Reqs: </label>
+                    <ul class="checks">
+                        <% reqs.forEach ((req, i)=>{ %>
+                            <li><input type="checkbox" id="check" name="reqs[]" value="<%= req %>" <% if (job.reqs?.includes(req)) { %> checked <% } %> > <%= req %></li>
+                        <% }) %>
+                    </ul>
+                </li>
+                <li class="job-activity">
+                    <label>Job Activity: </label>
+                    <ul class="radios">
+                        <% acts.forEach ((act, i)=>{ %>
+                            <li><input type="radio" id="radio" name="acts" value="<%= act %>" <% if (job.acts === act) { %> checked <% } %> > <%= act %> </li>
+                        <% }) %>
+                    </ul>
+                </li>
+                <li class="job-locs">
+                    <label>Job Locations: </label>
+                    <ul class="radios">
+                        <% locs.forEach ((loc, i)=>{%>
+                            <li><input type="radio" id="radio" name="locs" value="<%= loc %>" <% if (job.locs === loc) { %> checked <% } %> > <%= loc %></li>
+                        <% }) %>
+                    </ul>
+                </li>
+            </ul>
+            <div class="notes">
+                <div class="notes-area">
+                    <textarea name="notes" id="notes" cols="30" rows="10" placeholder="Notes"><%= job.notes %></textarea>
+                </div>
+                <div class="recruiter-area">
+                    <label>Recruiter Name: </label><input type="text" name="recruiterName" value="<%= job.recruiterName %>">
+                    <label>Recruiter Contact: </label><input type="text" name="recruiterContact" value="<%= job.recruiterContact %>">
+                </div>
+            </div>
+        </div>
+        <div class="submit">
+            <input type="submit" name="submit" value="Submit">
+        </div>
+    </form>
+</div>
+<%- include("./partials/footer.ejs") %>

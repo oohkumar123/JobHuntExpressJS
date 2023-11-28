@@ -1,14 +1,27 @@
-1. output checks and radios list
-2. tidy add page
-3. tidy up list page
-4. delete
-5. update
-6. filter
+use search loop for main pages assemble code locally not on server
+recruiter details
+
+ main page : 
+ todays applicaitons
+ all applications
+
+
+
  7. admin
  -- login
  -- update requirements
  -- update activity
 
+ add num applicants
+location remote etc
+
+add actiity field with date
+date applied
+date interviewed
+date coding test
+date rejected
+
+salary range
 
 
 Flash Cards
@@ -20,3 +33,14 @@ company
 
 COMMANDS TO ADD TO BOOKMARKS
 list all global packages: npm list -g --depth 0
+
+
+
+
+Homepage >> period=>today; sort=>date
+Homepage Search >> TypeAhead >> period=>today; sort=>date
+List >> period=>all; sort=>date/company/jobtitle
+List Search >> TypeAhead >> period=>all; sort=>date
+List Month Dropdown >> dropdown >> period=>month; sort=>date
+
+
