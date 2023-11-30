@@ -5,15 +5,19 @@
     padding: 20px;
     background-color: $second-color;
 
-    form {
-
+    .job-list-title {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 20px;
         h2 {
             font-size: 30px;
             color: $second-color;
             filter: brightness(150%);
-            padding-bottom: 5px;;
+            padding-bottom: 5px; 
         }
-        .submit {
+    }
+    form {
+            .submit {
             display: flex;
             justify-content: flex-end;
             align-items: center;

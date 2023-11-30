@@ -6,9 +6,9 @@ async function fetchData() {
     return jobs;
 }
 
-// fetchData().then(data=>{
-//     searchObj.init(data);
-// });
+fetchData().then(data=>{
+    searchObj.init(data);
+});
 
 const searchObj = {
     init: function(data) {

@@ -1,7 +1,6 @@
 require('dotenv').config();
 const { MongoClient } = require("mongodb");
 const ObjectId = require('mongodb').ObjectId;
-console.log(ObjectId);
 class JobHunt {
 
     constructor() {
@@ -10,7 +9,6 @@ class JobHunt {
         this.collectionName = "jobs";
         this.collection = '';
         this.connectDb();
-
     }
 
     async connectDb() {
@@ -35,16 +33,13 @@ class JobHunt {
 
     async list(period, sort, req) {
         
-        console.log('%cperiod: %o', 'color: red;font-size:12px', period);
-        console.log('%csort: %o', 'color: red;font-size:12px', sort);
-        console.log('%creq: %o', 'color: red;font-size:12px', req);
-
         let findData;
         let date = {};
         if (period ==='today' && sort=='date') {
             date = new Date();
             date.setHours(-8,0,0,0);
             findData = {"date": {"$gte" : date}};
+            console.log(findData);
         } else if (period ==='all' && sort=='date') {
             findData = {};
         } else if (period ==='month' && sort=='date') {
@@ -71,7 +66,6 @@ class JobHunt {
     async add(data) {
         const date = new Date();
         data = {...data, date};
-        console.log('%cdata: %o', 'color: red;font-size:12px', data);
         try {
             await this.collection.insertOne(data);
         } catch (err) {
@@ -91,7 +85,24 @@ class JobHunt {
         const id = { "_id" : new ObjectId(_id)};
 
         try {
-            await this.collection.replaceOne(id, data);
+            await this.collection.updateOne(
+                id,
+                {
+                    $set:{
+                        jobTitle: data.jobTitle,
+                        companyName: data.companyName,
+                        jobLink: data.jobLink,
+                        reqs: data.reqs,
+                        acts: data.acts,
+                        locs: data.locs,
+                        notes: data.notes,
+                        recruiterName: data.recruiterName,
+                        recruiterContact: data.recruiterContact
+                    }
+                }
+            );
+
+            //await this.collection.replaceOne(id, data);
         } catch (err) {
             console.error(`Something went wrong trying to find the documents: ${err}\n`);
         }
@@ -100,11 +111,8 @@ class JobHunt {
         const query = { "_id" : new ObjectId(id)};
         try {
             const deleteResult = await this.collection.deleteOne(query);
-            console.log(`Deleted ${deleteResult.deletedCount} documents\n`);
         } catch (err) {
-            console.error(
-                `Something went wrong trying to delete documents: ${err}\n`
-            );
+            console.error(`Something went wrong trying to delete documents: ${err}\n`);
         }    
     }
     getTodayDate() {

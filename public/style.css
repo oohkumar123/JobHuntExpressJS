@@ -113,7 +113,12 @@ table {
   background-color: #9fd3c7;
   color: white;
 }
-.container .jobs h2 {
+.container .jobs .job-list-title {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+.container .jobs .job-list-title h2 {
   font-size: 30px;
   color: #9fd3c7;
   filter: brightness(150%);
@@ -233,6 +238,9 @@ table {
   border-radius: 20px;
   padding: 20px;
 }
+.container .jobs-list .jobs-content .job-table {
+  width: 100%;
+}
 .container .jobs-list .jobs-content .job-table tr th {
   text-align: left;
   font-weight: 700;
@@ -247,7 +255,7 @@ table {
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: 400;
-  padding-right: 20px;
+  padding-right: 5px;
   padding-bottom: 5px;
   color: #142d4c;
 }
@@ -258,12 +266,21 @@ table {
 .container .jobs-list .jobs-content .job-table tr td a:hover {
   text-decoration: underline;
 }
+.container .jobs-list .jobs-content .job-table tr td.edit {
+  white-space: nowrap;
+  padding-left: 20px;
+}
 .container .add {
   border-radius: 20px;
   padding: 20px;
   background-color: #9fd3c7;
 }
-.container .add form h2 {
+.container .add .job-list-title {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+.container .add .job-list-title h2 {
   font-size: 30px;
   color: #9fd3c7;
   filter: brightness(150%);

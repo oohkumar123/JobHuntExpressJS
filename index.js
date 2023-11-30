@@ -1,5 +1,11 @@
-const express = require('express');
-const JobHunt = require('./models/jobHunt.js');
+require('dotenv').config()
+const express = require('express')
+const JobHunt = require('./models/jobHunt.js')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const apis = require('./routers/api.js')
+let moment = require('moment')
+
 const { reqs, acts, locs } = require('./remoteLib/data.js');
 
 const app = express();
@@ -9,76 +15,95 @@ app.use(express.urlencoded({ extended: true })) // to support URL-encoded bodies
 app.set('view engine', 'ejs'); // middleware & static files
 app.use(express.static('public')); // sets default public folder for styles
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
 async function init () {
     
+    // Custom middleware for login
+    const authenticate = (req, res, next) => {
+        const { username, password } = req.body;
+        if (username === process.env.USERNAME && password === process.env.PASSWORD) {
+            res.cookie('authenticated', true, { maxAge: 900000, httpOnly: true });
+            res.redirect('/list');
+        } else {
+            res.redirect('/login');
+        }
+    };
+
+    app.get('/login', (req, res) => {
+        res.render('login', { title:'Login', username:'Kumar', password:'K1kd89623!' });
+    });
+    
+    app.get('/logout', (req, res) => {
+        res.clearCookie("authenticated");
+        res.redirect('/login');
+    });
+    
+    app.post('/login', authenticate);
+    
     //add
-    app.get('/add', async (req, res) => {
-        console.log('%cLocation: %o', 'color: green;font-size:12px', '/add');
+    app.get('/add', checkAuth, async (req, res) => {
         res.render('add', { title: 'Add Job', reqs, acts, locs });
     });
+    
     //doadd 
-    app.post('/doadd', async(req, res) => {
-        console.log('%cLocation: %o', 'color: green;font-size:12px', '/doadd');
+    app.post('/doadd', checkAuth, async(req, res) => {
         await JobHunt.add(req.body);
         res.redirect('/');
     })
+    
     //edit
-    app.get('/edit', async (req, res) => {
-        console.log('%cLocation: %o', 'color: green;font-size:12px', '/edit');
+    app.get('/edit', checkAuth, async (req, res) => {
         let job = await JobHunt.edit(req.query.id);
-        res.render('edit', { title: 'Edit Job', job, reqs, acts, locs });
+        res.render('edit', { title: 'Edit Job', job, reqs, acts, locs, moment });
     });
+    
     //doedit 
-    app.post('/doedit', async(req, res) => {
-        console.log('%cLocation: %o', 'color: green;font-size:12px', '/doedit');
+    app.post('/doedit', checkAuth, async(req, res) => {
         await JobHunt.doedit(req.body);
         res.redirect('/');
     })
+    
     //delete
-    app.get('/delete', async (req, res) => {
-        console.log('%cLocation: %o', 'color: green;font-size:12px', '/delete');
+    app.get('/delete', checkAuth, async (req, res) => {
         await JobHunt.delete(req.query.id);
-        res.redirect('/');
+        res.redirect('/list');
     });
+    
     //list Sort
     //List >> period=>all; sort=>date/company/jobtitle
-    app.get('/list/sort/:sortString', async (req, res) => {
-        console.log('%cLocation: %o', 'color: green;font-size:12px', '/list?sort');
+    app.get('/list/sort/:sortString', checkAuth, async (req, res) => {
         const jobList = await JobHunt.list('all', req.params.sortString);
-        res.render('list', { title: 'Home', jobList });
+        res.render('list', { title: 'Home', jobList, moment });
     });
+    
     //list
     //List >> period=>all; sort=>date/company/jobtitle
-    app.get('/list', async (req, res) => {
-        console.log('%cLocation: %o', 'color: green;font-size:12px', '/list');
+    app.get('/list', checkAuth, async (req, res) => {
         const jobList = await JobHunt.list('all', 'date');
-        res.render('list', { title: 'Home', jobList });
+        res.render('list', { title: 'Home', jobList, moment });
+
     });
+    
     //homepage (todays jobs)
     //Homepage >> period=>today; sort=>date
-    app.get('/', async (req, res) => {
-        console.log('%cLocation: %o', 'color: green;font-size:12px', '/');
+    app.get('/', checkAuth, async (req, res) => {
         const jobList = await JobHunt.list('today', 'date');
-        //res.send(jobList);
-        res.render('index', { title: 'Home', jobList });
+        res.render('index', { title: 'Home', jobList, moment });
+        
     });
 
+    function checkAuth(req, res, next) {
+        if (req.cookies.authenticated) {
+            next();
+        } else {
+            res.redirect('/login');
+        }
+    }
     //*****************API*********************/
-    //api fetch
-    app.get('/api/typeAhead', async (req, res) => {
-        console.log('%cLocation: %o', 'color: green;font-size:12px', '/api fetch');
-
-        const jobList = await JobHunt.list('month', 'date', req.query);
-        res.send(jobList)
-    });
-    //api month
-    app.get('/api/month/:month', async (req, res) => {
-        console.log('%cLocation: %o', 'color: green;font-size:12px', '/api month');
-        console.log('%creq.params.month: %o', 'color: red;font-size:12px', req.params.month);
-
-        const jobList = await JobHunt.list('month', 'date', req);
-        res.send(jobList)
-    });
+    
+    app.use('/api', apis)
 }
 
 JobHunt.connectDb().then(result => {

@@ -6,12 +6,16 @@
     padding:20px;
     background-color: $second-color;
     color: white;
-    h2 {
-        font-size: 30px;
-        color: $second-color;
-        filter: brightness(150%);
-        padding-bottom: 5px;
-    
+    .job-list-title {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        h2 {
+            font-size: 30px;
+            color: $second-color;
+            filter: brightness(150%);
+            padding-bottom: 5px; 
+        }
     }
     .job-row {
         display: flex;

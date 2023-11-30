@@ -47,7 +47,7 @@ export default class typeAhead {
                 <div class="job-row">
                     <ul>
                         <li class="date">
-                            <h3>${job.date}</h3>
+                            <h3>${ moment(new Date(job.date)).format('MM/D/YYYY') }</h3>
                         </li>
                         <li class="company-name">${job.jobTitle} <span>- ${job.companyName}</span></li>
                         <li class="job-description"><a href="${job.jobLink}" target="_blank">Link to JD</a>
@@ -86,7 +86,7 @@ export default class typeAhead {
             
         for (const job of results) {
             rows += `<tr>
-                        <td class="date">${ job.date }</td>
+                        <td class="date">${ moment(new Date(job.date)).format('MM/D/YYYY') }</td>
                         <td class="company-name"><a href="/edit?id=${ job._id }">${ job.companyName }</a></td>
                         <td class="job-title"><a href="${ job.jobLink }" target="_blank">${ job.jobTitle }</a></td>
                     </tr>`
