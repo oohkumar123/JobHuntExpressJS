@@ -1,16 +1,12 @@
 <%- include("./partials/head.ejs") %>
-<% const date = new Date();let currentDate = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`;%>
-<style>
-
-</style>
 <div class="add">
-    <form action="/doadd" method="post">
+    <div class="job-list-title">
         <h2>Add Jobs</h2>
+    </div>
+    
+    <form action="/doadd" method="post">
         <div class="content" style="display: flex;">
             <ul>
-                <!-- <li class="date">
-                    <label>Date: </label><input type="text" name="date" value="<%= currentDate %>"/>
-                </li> -->
                 <li class="job-title">
                     <label>Job Title: </label><input type="text" name="jobTitle" value="" />
                 </li>

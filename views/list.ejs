@@ -12,20 +12,29 @@
     <% if (jobList?.length > 0) { %> 
         <div class="jobs-content">
             <table class="job-table">
-                <tr>
-                    <th><a href="/list/sort/date">Date</a></th>
-                    <th><a href="/list/sort/companyName">Company</a></th>
-                    <th><a href="/list/sort/jobTitle">Job Title</a></th>
-                </tr>
-                <% jobList?.forEach(job => { 
-                    const [year, month, day] = JSON.stringify(job.date).replace(/^"(.*)"$/, '$1').slice(0, 10).split('-');
-                    let date = `${month}/${day}/${year}`; %>
+                <thead>
                     <tr>
-                        <td class="date"><%= date %></td>
-                        <td class="company-name"><a href="/edit?id=<%= job._id %>"><%= job.companyName %></a></td>
-                        <td class="job-title"><a href="<%= job.jobLink %>" target="_blank"><%= job.jobTitle %></a></td>
+                        <th><a href="/list/sort/date">Date</a></th>
+                        <th><a href="/list/sort/companyName">Company</a></th>
+                        <th><a href="/list/sort/jobTitle">Title</a></th>
+                        <th>Desc</th>
+                        <th></th>
                     </tr>
-                <% }) %> 
+                </thead>
+                <tbody>
+                <% jobList?.forEach(job => { %>
+                    <tr>
+                        <td class="date"><%= moment(new Date(job.date)).format('MM/D/YYYY'); %></td>
+                        <td class="company-name"><%= job.companyName %></td>
+                        <td class="job-title"><%= job.jobTitle %></td>
+                        <td class="job-link"><a href="<%= job.jobLink %>">Link</aa></td>
+                        <td class="edit">
+                            <a href="/edit?id=<%= job._id %>">edit</a> | 
+                            <a href="/delete?id=<%= job._id %>" onclick="return confirm('Are you sure?')">delete</a>
+                        </td>
+                    </tr>
+                <% }) %>
+                </tbody>
             </table>
         </div>
     <% } else { %>
