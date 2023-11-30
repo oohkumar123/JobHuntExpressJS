@@ -1,7 +1,7 @@
 import typeAhead  from "./typeAhead.js";
 
 async function fetchData() {
-    const response = await fetch("http://localhost:3000/api/typeAhead");
+    const response = await fetch("/api/typeAhead");
     const jobs = await response.json();
     return jobs;
 }
