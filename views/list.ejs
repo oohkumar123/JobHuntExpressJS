@@ -1,14 +1,8 @@
 <%- include("./partials/head.ejs") %>
 <div class="jobs-list">
-    <div class="job-list-title">
-        <h2>All Jobs (<%= jobList?.length %>)</h2>
-        <select class="form-select" id="months">
-            <option selected>Open this select menu</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-        </select>
-    </div>
     
+    <%- include("./partials/job-list-title-drop.ejs", {title:'Full Job List', dropdown: true, length: jobList?.length}); %>
+   
     <% if (jobList?.length > 0) { %> 
         <div class="jobs-content">
             <table class="job-table">
@@ -27,7 +21,7 @@
                         <td class="date"><%= moment(new Date(job.date)).format('MM/D/YYYY'); %></td>
                         <td class="company-name"><%= job.companyName %></td>
                         <td class="job-title"><%= job.jobTitle %></td>
-                        <td class="job-link"><a href="<%= job.jobLink %>">Link</aa></td>
+                        <td class="job-link"><a href="<%= job.jobLink %>">Link</a></td>
                         <td class="edit">
                             <a href="/edit?id=<%= job._id %>">edit</a> | 
                             <a href="/delete?id=<%= job._id %>" onclick="return confirm('Are you sure?')">delete</a>

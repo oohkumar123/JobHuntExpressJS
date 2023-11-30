@@ -1,0 +1,6 @@
+<div class="job-list-title">
+    <h2><%= title %><% if (length) { %> (<%= length %>)<% } %></h2>
+    <% if (dropdown) { %> 
+        <%- include("./dropdown-month.ejs") %>
+    <% } %>
+</div>

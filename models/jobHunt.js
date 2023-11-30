@@ -39,7 +39,6 @@ class JobHunt {
             date = new Date();
             date.setHours(-8,0,0,0);
             findData = {"date": {"$gte" : date}};
-            console.log(findData);
         } else if (period ==='all' && sort=='date') {
             findData = {};
         } else if (period ==='month' && sort=='date') {
@@ -81,28 +80,21 @@ class JobHunt {
             console.error(`Something went wrong trying to find the documents: ${err}\n`);
         }
     }
-    async doedit({_id, ...data}) {
+    async doedit({_id, submit, ...data}) {
+        console.log('----------------------------');
+        console.log('_id edit',_id);
+        console.log('submit edit',submit);
+        console.log('data edit',data);
         const id = { "_id" : new ObjectId(_id)};
 
         try {
             await this.collection.updateOne(
                 id,
                 {
-                    $set:{
-                        jobTitle: data.jobTitle,
-                        companyName: data.companyName,
-                        jobLink: data.jobLink,
-                        reqs: data.reqs,
-                        acts: data.acts,
-                        locs: data.locs,
-                        notes: data.notes,
-                        recruiterName: data.recruiterName,
-                        recruiterContact: data.recruiterContact
-                    }
+                    $set:data
                 }
             );
 
-            //await this.collection.replaceOne(id, data);
         } catch (err) {
             console.error(`Something went wrong trying to find the documents: ${err}\n`);
         }
@@ -114,16 +106,6 @@ class JobHunt {
         } catch (err) {
             console.error(`Something went wrong trying to delete documents: ${err}\n`);
         }    
-    }
-    getTodayDate() {
-        const today = new Date();
-        console.log('%ctoday: %o', 'color: red;font-size:12px', today);
-        let day = today.getDate();
-        let month = today.getMonth() + 1;
-        let year = today.getFullYear();
-        //return {date:`${month}/${day}/${year}`};
-        return today;
-
     }
     
 }

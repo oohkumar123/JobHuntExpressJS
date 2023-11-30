@@ -1,0 +1,34 @@
+        <select class="form-select" id="months">
+            <option selected>Open this select menu</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+        </select>
+        <script>
+            const months = document.querySelector('#months');
+            months.addEventListener('change', async (item)=>{
+                const response = await fetch("http://localhost:3000/api/month/"+item.target.value);
+                const jobList = await response.json();
+                const resultHolder = document.querySelector('.jobs-content tbody');
+                resultHolder.innerHTML = allJobsList(jobList);
+            
+                function allJobsList (jobList) {   
+            
+                    let rows = '';
+                        
+                    for (const job of jobList) {
+                        rows += `<tr>
+                                    <td class="date">${ moment(new Date(job.date)).format('MM/D/YYYY') }</td>
+                                    <td class="company-name">${ job.companyName }</td>
+                                    <td class="job-title">${ job.jobTitle }</td>
+                                    <td class="job-link"><a href="${ job.jobLink }">Link</a></td>
+                                    <td class="edit">
+                                        <a href="/edit?id=${ job._id }">edit</a> | 
+                                        <a href="/delete?id=${ job._id }" onclick="return confirm('Are you sure?')">delete</a>
+                                    </td>
+                                </tr>`;
+                    }
+                    
+                    return rows;
+                }
+            })
+        </script>

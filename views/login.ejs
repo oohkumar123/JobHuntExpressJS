@@ -1,8 +1,8 @@
 <%- include("./partials/head.ejs") %>
 <div class="add">
-    <div class="job-list-title">
-        <h2><%= title %></h2>
-    </div>
+    
+    <%- include("./partials/job-list-title-drop.ejs", {title:'Login', dropdown: false, length: false}); %>
+
     <form action="/login" method="post">
         <div class="content" style="display: flex;">
             <ul>

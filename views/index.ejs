@@ -1,13 +1,8 @@
 <%- include("./partials/head.ejs"); %>
 <div class="jobs">
-    <div class="job-list-title">
-        <h2>Todays Jobs (<%= jobList?.length %>)</h2>
-        <select class="form-select" id="months">
-            <option selected>Open this select menu</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-        </select>
-    </div>
+    
+    <%- include("./partials/job-list-title-drop.ejs", {title:'Todays Jobs', dropdown: false, length: jobList?.length}); %>
+    
     <% if (jobList?.length > 0) { %> 
         <% jobList.forEach(job => { %>
             <div class="job-row">

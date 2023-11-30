@@ -1,4 +1,5 @@
 const months = document.querySelector('#months');
+console.log(months);
 months.addEventListener('change', async (item)=>{
     const response = await fetch("http://localhost:3000/api/month/"+item.target.value);
     const jobList = await response.json();

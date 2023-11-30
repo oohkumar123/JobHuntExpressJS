@@ -1,11 +1,8 @@
-
-2. utilities error
-3. salary range agreed
-4. refactor type ahead and search 
-5. put requirements on mongodb and build model
-6. convert to mongoose
-7. refactor titles to their own module and css
-move authenticate to module
+1. refactor type ahead and search 
+2. put requirements on mongodb and build model
+3. select all delete checkboxes
+4. Validation
+5. move authenticate to module
 
 
 

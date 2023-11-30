@@ -57,6 +57,23 @@ table {
   border-radius: 20px;
   padding: 20px;
 }
+.container .job-list-title {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+.container .job-list-title h2 {
+  font-size: 30px;
+  color: #9fd3c7;
+  filter: brightness(150%);
+  padding-bottom: 5px;
+}
+.container .job-list-title select {
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  padding: 5px 5px;
+  color: #142d4c;
+}
 .container nav {
   display: flex;
   border-radius: 20px;
@@ -112,17 +129,6 @@ table {
   padding: 20px;
   background-color: #9fd3c7;
   color: white;
-}
-.container .jobs .job-list-title {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 20px;
-}
-.container .jobs .job-list-title h2 {
-  font-size: 30px;
-  color: #9fd3c7;
-  filter: brightness(150%);
-  padding-bottom: 5px;
 }
 .container .jobs .job-row {
   display: flex;
@@ -274,17 +280,6 @@ table {
   border-radius: 20px;
   padding: 20px;
   background-color: #9fd3c7;
-}
-.container .add .job-list-title {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 20px;
-}
-.container .add .job-list-title h2 {
-  font-size: 30px;
-  color: #9fd3c7;
-  filter: brightness(150%);
-  padding-bottom: 5px;
 }
 .container .add form .submit {
   display: flex;

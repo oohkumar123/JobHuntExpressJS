@@ -1,8 +1,8 @@
 <%- include("./partials/head.ejs");%>
 <div class="add">
-    <div class="job-list-title">
-        <h2><%= title %></h2>
-    </div>
+    
+    <%- include("./partials/job-list-title-drop.ejs", {title:'Edit Job', dropdown: false, length: false}); %>
+    
     <form action="/doedit" method="post">
         <input type="hidden" name="_id" value="<%= job._id %>">
         <div class="content" style="display: flex;">
@@ -51,6 +51,7 @@
                 <div class="recruiter-area">
                     <label>Recruiter Name: </label><input type="text" name="recruiterName" value="<%= job.recruiterName %>">
                     <label>Recruiter Contact: </label><input type="text" name="recruiterContact" value="<%= job.recruiterContact %>">
+                    <label>Salary Range: </label><input type="text" name="salaryRange" value="<%= job.salaryRange %>">
                 </div>
             </div>
         </div>
