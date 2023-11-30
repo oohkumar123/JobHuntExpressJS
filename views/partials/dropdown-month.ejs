@@ -6,7 +6,7 @@
         <script>
             const months = document.querySelector('#months');
             months.addEventListener('change', async (item)=>{
-                const response = await fetch("/api/month/"+item.target.value);
+                const response = await fetch("https://beautiful-blue-hat.cyclic.app/api/month/"+item.target.value);
                 const jobList = await response.json();
                 const resultHolder = document.querySelector('.jobs-content tbody');
                 resultHolder.innerHTML = allJobsList(jobList);
