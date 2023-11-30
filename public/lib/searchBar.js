@@ -1,7 +1,7 @@
 import typeAhead  from "./typeAhead.js";
 
 async function fetchData() {
-    const response = await fetch("/api/typeAhead");
+    const response = await fetch("https://beautiful-blue-hat.cyclic.app/api/typeAhead");
     const jobs = await response.json();
     return jobs;
 }
