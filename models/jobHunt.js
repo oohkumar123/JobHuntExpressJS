@@ -52,6 +52,7 @@ class JobHunt {
         }
         try {
             let jobsList = [];
+            findData = {...findData, 'acts':'applied'};
             const returnValues = await this.collection.find(findData).sort(sort)
             await returnValues.forEach((jobApplied) => {
                 jobsList.push(jobApplied)
@@ -81,10 +82,6 @@ class JobHunt {
         }
     }
     async doedit({_id, submit, ...data}) {
-        console.log('----------------------------');
-        console.log('_id edit',_id);
-        console.log('submit edit',submit);
-        console.log('data edit',data);
         const id = { "_id" : new ObjectId(_id)};
 
         try {
@@ -106,6 +103,23 @@ class JobHunt {
         } catch (err) {
             console.error(`Something went wrong trying to delete documents: ${err}\n`);
         }    
+    }
+    async archive (ids) {
+        const idsObs = ids.map((item) => new ObjectId(item));
+        
+        try {
+            this.collection.updateMany(
+                { "_id": { $in: idsObs } },
+                {
+                    $set:{"acts": "archived"}
+                }
+            );
+        } catch (err) {
+            console.error(`Something went wrong trying to delete documents: ${err}\n`);
+        }    
+        
+    
+
     }
     
 }

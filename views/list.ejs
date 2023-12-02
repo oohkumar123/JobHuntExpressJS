@@ -1,13 +1,48 @@
 <%- include("./partials/head.ejs") %>
 <div class="jobs-list">
-    
     <%- include("./partials/job-list-title-drop.ejs", {title:'Full Job List', dropdown: true, length: jobList?.length}); %>
    
     <% if (jobList?.length > 0) { %> 
+        <script>
+            window.addEventListener("load", (event) => {
+                document.querySelector('#delete-all').addEventListener('click', ({target})=>{
+                    let checks = document.querySelectorAll('.checks .archive-item');
+                    if (target.checked) {
+                        checks.forEach(item => item.classList.add('vis'));
+                    } else {
+                        checks.forEach(item => item.classList.remove('vis'));
+                    }
+                    let archive = document.querySelector('.archive');
+                    if (target.checked) {
+                        archive.classList.add('vis');
+                    } else {
+                        archive.classList.remove('vis');
+                    }
+                });
+                document.querySelector('#submit').addEventListener('click', (submit)=>{
+                    let archiveItems = document.querySelectorAll('.archiveItem:checked');
+                    let data = []
+                    
+                    archiveItems.forEach((item)=>{
+                        data.push(item.dataset.id)
+                    })
+                    
+                    fetch('/api/archive', {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify( data )
+                    });
+                })
+            });
+
+        </script>
         <div class="jobs-content">
             <table class="job-table">
                 <thead>
                     <tr>
+                        <th><input type="checkbox" id="delete-all"></th>
                         <th><a href="/list/sort/date">Date</a></th>
                         <th><a href="/list/sort/companyName">Company</a></th>
                         <th><a href="/list/sort/jobTitle">Title</a></th>
@@ -18,6 +53,7 @@
                 <tbody>
                 <% jobList?.forEach(job => { %>
                     <tr>
+                        <td class="checks"><input type="checkbox" class="archive-item" name="archiveItem" data-id="<%= job._id %>"></td>
                         <td class="date"><%= moment(new Date(job.date)).format('MM/D/YYYY'); %></td>
                         <td class="company-name"><%= job.companyName %></td>
                         <td class="job-title"><%= job.jobTitle %></td>
@@ -29,6 +65,9 @@
                     </tr>
                 <% }) %>
                 </tbody>
+                <tfoot>
+                    <tr><td colspan="6" class="archive vis"><input type="submit" name="submit" id="submit" value="Archive Selected Items"></td></tr>
+                </tfoot>
             </table>
         </div>
     <% } else { %>

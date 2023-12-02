@@ -1,32 +1,6 @@
-1. refactor type ahead and search 
-2. put requirements on mongodb and build model
-3. select all delete checkboxes
-4. Validation
-5. move authenticate to module
-
-
+FRI
+4. validation
 
 4. build admin interface
 --- username and password update
 --- auto delete after 1 month
-
-
-
-
-
-
-
-
-Homepage >> period=>today; sort=>date
-Homepage Search >> TypeAhead >> period=>today; sort=>date
-List >> period=>all; sort=>date/company/jobtitle
-List Search >> TypeAhead >> period=>all; sort=>date
-List Month Dropdown >> dropdown >> period=>month; sort=>date
-
-
-
-added date: 2023-11-29T19:30:10.878Z >> CODE
-mongodb: date 2023-11-29T19:30:10.878+00:00 >> CODE
-date edit fetched:  2023-11-29T19:30:10.878Z >> CODE
->> date on ejs template: Tue Nov 21 2023 00:00:00 GMT-0800 >> STRING
->> if I use date() on the string

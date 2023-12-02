@@ -41,18 +41,6 @@ nav {
             text-decoration: none;
             color: #9fd3c7;
         }
-        
-        li.search {
-            color: #9fd3c7;
-            input {
-                border:1px lightgrey solid;
-                color: lightgrey;
-                &:focus {
-                    outline: none;
-                }
-            }
-        }
-
 
     }
 }

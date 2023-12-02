@@ -68,7 +68,23 @@ table {
   filter: brightness(150%);
   padding-bottom: 5px;
 }
-.container .job-list-title select {
+.container .job-list-title .list-filters {
+  display: flex;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+}
+.container .job-list-title .list-filters .search {
+  color: #ffffff;
+}
+.container .job-list-title .list-filters .search input {
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  padding: 8px 5px;
+}
+.container .job-list-title .list-filters .search input:focus {
+  outline: none;
+}
+.container .job-list-title .list-filters select {
   border-radius: 5px;
   border: 1px solid #cccccc;
   padding: 5px 5px;
@@ -112,16 +128,6 @@ table {
 .container nav ul a {
   text-decoration: none;
   color: #9fd3c7;
-}
-.container nav ul li.search {
-  color: #9fd3c7;
-}
-.container nav ul li.search input {
-  border: 1px lightgrey solid;
-  color: lightgrey;
-}
-.container nav ul li.search input:focus {
-  outline: none;
 }
 .container .jobs {
   margin: 20px 0;
@@ -271,6 +277,23 @@ table {
 }
 .container .jobs-list .jobs-content .job-table tr td a:hover {
   text-decoration: underline;
+}
+.container .jobs-list .jobs-content .job-table tr td.checks .archive-item {
+  visibility: hidden;
+}
+.container .jobs-list .jobs-content .job-table tr td.checks .archive-item.vis {
+  visibility: visible;
+}
+.container .jobs-list .jobs-content .job-table tr td.archive {
+  display: none;
+}
+.container .jobs-list .jobs-content .job-table tr td.archive.vis {
+  display: table-cell;
+}
+.container .jobs-list .jobs-content .job-table tr td.archive input[type=submit] {
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  padding: 8px 5px;
 }
 .container .jobs-list .jobs-content .job-table tr td.edit {
   white-space: nowrap;

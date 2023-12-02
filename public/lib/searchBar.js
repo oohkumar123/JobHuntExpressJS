@@ -7,23 +7,7 @@ async function fetchData() {
 }
 
 fetchData().then(data=>{
-    searchObj.init(data);
+    const searchField = document.getElementById("search-field");
+    if (!searchField) return;
+    new typeAhead(searchField, data, '.jobs-content tbody');
 });
-
-const searchObj = {
-    init: function(data) {
-        const searchField = document.getElementById("search-field");
-        if (!searchField) return;
-        
-        let path = document.location.pathname.replace(/^\//g, '')
-        if (path=='list') {
-            new typeAhead(searchField, data, '.jobs-list');
-        } else {
-            new typeAhead(searchField, data, '.jobs');
-        }
-    }
-};
-  
-
-
-  

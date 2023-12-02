@@ -62,11 +62,27 @@
                         }
                     }
                     
-                    &.date {}
+                    &.checks {
+                        .archive-item {
+                            visibility:hidden;
+                            &.vis {
+                                visibility:visible;
+                            }
+                        }
+                    }
                     
-                    &.company-name {}
-                    
-                    &.job-title {}
+                    &.archive {
+                        display: none;
+                        &.vis {
+                            display: table-cell;
+                        }
+                        input[type="submit"] {
+                            border-radius: 5px;
+                            border: 1px solid #cccccc;
+                            padding: 8px 5px;
+                        }
+                    }
+                
                     &.edit {white-space: nowrap; padding-left: 20px;;}
                     
                 }

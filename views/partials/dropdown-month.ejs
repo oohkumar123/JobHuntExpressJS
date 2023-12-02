@@ -1,8 +1,13 @@
-        <select class="form-select" id="months">
-            <option selected>Open this select menu</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-        </select>
+        <div class="list-filters">
+            
+            <div class="search">Search <input type="text" id="search-field"></div>
+            <select class="form-select" id="months">
+                <option selected>Open this select menu</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+            </select>
+        </div>
+        
         <script>
             const months = document.querySelector('#months');
             months.addEventListener('change', async (item)=>{
@@ -17,6 +22,7 @@
                         
                     for (const job of jobList) {
                         rows += `<tr>
+                                    <td class="checks"><input type="checkbox" class="archiveItem" name="archiveItem" data-id="${  job._id }"></td>
                                     <td class="date">${ moment(new Date(job.date)).format('MM/D/YYYY') }</td>
                                     <td class="company-name">${ job.companyName }</td>
                                     <td class="job-title">${ job.jobTitle }</td>

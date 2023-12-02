@@ -10,26 +10,9 @@
     border-radius: 20px;
     padding:20px;
     
-    .job-list-title {
-        display: flex;
-        justify-content: space-between;
-        padding-bottom: 20px;
-        h2 {
-            font-size: 30px;
-            color: $second-color;
-            filter: brightness(150%);
-            padding-bottom: 5px;
-        }
-        
-        select {
-            border-radius: 5px;
-            border: 1px solid #cccccc;
-            padding: 5px 5px;
-            color: #142d4c;
-        }
 
-    }
-
+    @import "sections/title";
+    
     @import "sections/nav";
     
     @import "sections/jobs";
