@@ -44,4 +44,5 @@ JobHunt.connectDb().then(result => {
 }).catch(err => {
     console.log(err);
     process.exit(1);
-});
+});// once again we find ourselves here
+
