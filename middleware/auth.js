@@ -13,6 +13,6 @@ const auth = (req, res, next) => {
     } else {
         res.redirect('/login');
     }
-console.log(res);
+//console.log(res);
 };
-exports.auth = auth;
+exports.auth = auth; // here i am
