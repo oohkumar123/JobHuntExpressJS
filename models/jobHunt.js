@@ -5,8 +5,8 @@ class JobHunt {
 
     constructor() {
         this.uri = process.env.MONGO_URI;
-        this.dbName = "jobHuntLive";
-        this.collectionName = "jobs";
+        this.dbName = "jobHuntDEV";
+        this.collectionName = "jobs_dev";
         this.collection = '';
         this.connectDb();
     }
