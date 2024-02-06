@@ -15,4 +15,4 @@ const auth = (req, res, next) => {
     }
 //console.log(res);
 };
-exports.auth = auth; // here i am
+exports.auth = auth; // here i am once 
