@@ -39,7 +39,7 @@ async function init () {
 
 JobHunt.connectDb().then(result => {
     app.listen(PORT);
-    console.log(`Watching on port ${PORT}`);
+    console.log(`Watching on port : http://localhost:${PORT}`);
     init();
 }).catch(err => {
     console.log(err);
