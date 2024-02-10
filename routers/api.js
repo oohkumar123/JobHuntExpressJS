@@ -20,9 +20,12 @@ router.get('/month/:month', async (req, res) => {
     const jobList = await JobHunt.list('month', 'date', req);
     res.send(jobList)
 });
-//api archive
+//archive
 router.post('/archive', async({body:ids}, res) => {
     await JobHunt.archive(ids);
+    const jobList = await JobHunt.list('all');
 });
+
+//api archive
 
 module.exports = router

@@ -4,3 +4,10 @@ FRI
 4. build admin interface
 --- username and password update
 --- auto delete after 1 month
+
+move check auth to single location
+
+date dropdown
+-- needs no archive value
+
+sort out different list states

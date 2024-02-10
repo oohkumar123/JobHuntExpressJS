@@ -42,6 +42,7 @@ router.get('/delete', checkAuth, async (req, res) => {
     res.redirect('/list');
 });
 
+
 //list Sort
 //List >> period=>all; sort=>date/company/jobtitle
 router.get('/list/sort/:sortString', checkAuth, async (req, res) => {

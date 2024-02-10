@@ -5,21 +5,26 @@
     <% if (jobList?.length > 0) { %> 
         <script>
             window.addEventListener("load", (event) => {
-                document.querySelector('#check-all').addEventListener('click', ({target})=>{
+                document.querySelector('#delete-all').addEventListener('click', ({target})=>{
                     let checks = document.querySelectorAll('.checks .archive-item');
                     if (target.checked) {
-                        checks.forEach((item)=>item.checked = true);
+                        checks.forEach(item => item.classList.add('vis'));
                     } else {
-                        checks.forEach((item)=>item.checked = false);
+                        checks.forEach(item => item.classList.remove('vis'));
+                    }
+                    let archive = document.querySelector('.archive');
+                    if (target.checked) {
+                        archive.classList.add('vis');
+                    } else {
+                        archive.classList.remove('vis');
                     }
                 });
-                
-                document.querySelector('#archive').addEventListener('click', (submit)=>{
-                    let archiveItems = document.querySelectorAll('.archive-item:checked');
+                document.querySelector('#submit').addEventListener('click', (submit)=>{
+                    let archiveItems = document.querySelectorAll('.archiveItem:checked');
                     let data = []
                     
                     archiveItems.forEach((item)=>{
-                        data.push(item.dataset.id);
+                        data.push(item.dataset.id)
                     })
                     
                     fetch('/api/archive', {
@@ -29,7 +34,6 @@
                         },
                         body: JSON.stringify( data )
                     });
-                    window.location.href = 'http://localhost:3000/list';
                 })
             });
 
@@ -38,7 +42,7 @@
             <table class="job-table">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" id="check-all"></th>
+                        <th><input type="checkbox" id="delete-all"></th>
                         <th><a href="/list/sort/date">Date</a></th>
                         <th><a href="/list/sort/companyName">Company</a></th>
                         <th><a href="/list/sort/jobTitle">Title</a></th>
@@ -62,11 +66,7 @@
                 <% }) %>
                 </tbody>
                 <tfoot>
-                    <tr>
-                        <td colspan="6" class="archive vis">
-                            <input type="submit" name="archive" id="archive" value="Archive">
-                        </td>
-                    </tr>
+                    <tr><td colspan="6" class="archive vis"><input type="submit" name="submit" id="submit" value="Archive Selected Items"></td></tr>
                 </tfoot>
             </table>
         </div>

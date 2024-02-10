@@ -62,24 +62,17 @@
                         }
                     }
                     
-                    &.checks {
-                        .archive-item {
-                            visibility:hidden;
-                            &.vis {
-                                visibility:visible;
-                            }
-                        }
-                    }
-                    
                     &.archive {
-                        display: none;
-                        &.vis {
-                            display: table-cell;
-                        }
                         input[type="submit"] {
                             border-radius: 5px;
-                            border: 1px solid #cccccc;
+                            border: 0;
                             padding: 8px 5px;
+                            background-color: $first-color;
+                            color:black;
+                            cursor: pointer;
+                            &:hover {
+                                background-color: $second-color;
+                            }
                         }
                     }
                 

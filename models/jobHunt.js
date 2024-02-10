@@ -35,24 +35,32 @@ class JobHunt {
         
         let findData;
         let date = {};
+        let status = 'applied';
         if (period ==='today' && sort=='date') {
             date = new Date();
             date.setHours(-8,0,0,0);
             findData = {"date": {"$gte" : date}};
+            findData = {...findData, 'acts':'applied'};
         } else if (period ==='all' && sort=='date') {
-            findData = {};
+            findData = {'acts':'applied'};
         } else if (period ==='month' && sort=='date') {
             let month = req.params.month
-            findData = {
-                "date": {
-                    "$gte" : new Date(`2023-${month}-01`), 
-                    "$lt" : new Date(`2023-${month}-31`)
+            if (month!=='all') {
+                findData = {
+                    "date": {
+                        "$gte" : new Date(`2024-${month}-01`), 
+                        "$lt" : new Date(`2024-${month}-31`)
+                    }
                 }
+                findData = {...findData, 'acts':'applied'};
+            } else {
+                findData = {};
             }
+            status = 'archived';
         }
+        
         try {
             let jobsList = [];
-            findData = {...findData, 'acts':'applied'};
             const returnValues = await this.collection.find(findData).sort(sort)
             await returnValues.forEach((jobApplied) => {
                 jobsList.push(jobApplied)
@@ -114,6 +122,7 @@ class JobHunt {
                     $set:{"acts": "archived"}
                 }
             );
+            return;
         } catch (err) {
             console.error(`Something went wrong trying to delete documents: ${err}\n`);
         }    
